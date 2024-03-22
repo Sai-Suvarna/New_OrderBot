@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Page</title>
+    <style>
+        /* Styles for the payment page */
+        .container {
+            margin: 20px;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        #total-bill {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Payment Details</h1>
+
+    <!-- Final list table -->
+    <div id="final-list-table"></div>
+
+    <!-- Total bill -->
+    <div id="total-bill"></div>
+
+    <!-- Button to proceed to payment -->
+    <button id="proceed-to-payment-btn" type="button">Proceed to Payment</button>
+</div>
+
+<script>
+    // Function to display the final list in a table
+    function displayFinalList(finalList) {
+        console.log(finalList)
+        const tableContainer = document.getElementById('final-list-table');
+        tableContainer.innerHTML = ''; // Clear existing content
+
+        // Create a new table element
+        const table = document.createElement('table');
+        table.classList.add('table', 'table-bordered');
+
+        // Create the table header
+        const thead = document.createElement('thead');
+        const headerRow = document.createElement('tr');
+        const headers = ['Item', 'Quantity', 'Price']; // Table column headers
+        headers.forEach(headerText => {
+            const header = document.createElement('th');
+            header.textContent = headerText;
+            headerRow.appendChild(header);
+        });
+        thead.appendChild(headerRow);
+        table.appendChild(thead);
+
+        // Create the table body
+        const tbody = document.createElement('tbody');
+        finalList.forEach(item => {
+            const row = document.createElement('tr');
+            const columns = [item.items, item.quantities, item.prices]; // Table row data
+            columns.forEach(columnText => {
+                const column = document.createElement('td');
+                column.textContent = columnText;
+                row.appendChild(column);
+            });
+            tbody.appendChild(row);
+        });
+        table.appendChild(tbody);
+
+        // Append the table to the container
+        tableContainer.appendChild(table);
+
+        // Calculate and display the total bill
+        const totalBill = finalList.reduce((total, item) => total + item.quantities * item.prices, 0);
+        document.getElementById('total-bill').textContent = `Total Bill: ${totalBill}`;
+        console.log(totalBill)
+        // Set the total bill as the amount for payment
+        const proceedToPaymentBtn = document.getElementById("proceed-to-payment-btn");
+        proceedToPaymentBtn.setAttribute("data-amount", totalBill);
+    }
+
+    // Function to fetch data from BigQuery
+    async function fetchDataFromBigQuery(tableNumber) {
+
+
+            axios.get('/get_order_final_summary', {
+        params: {
+            table_number: tableNumber
+        }
+    })
+    .then(response => {
+        displayFinalList(response.data);
+    })
+    .catch(error => {
+        console.error('Error loading order summary:', error);
+    });
+    }
+
+
+    window.onload = async function() {
+        // Retrieve table number from URL parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        const tableNumber = urlParams.get('table_number');
+        if (tableNumber) {
+            await fetchDataFromBigQuery(tableNumber);
+        } else {
+            alert("Table number not found in URL parameter.");
+        }
+    };
+
+    // Function to redirect to the UPI payment page with the bill amount
+    function redirectToPayment(upiAppUrl) {
+        window.location.href = upiAppUrl;
+    }
+
+    // Attach event listener to the "Proceed to Payment" button
+    const proceedToPaymentBtn = document.getElementById("proceed-to-payment-btn");
+    proceedToPaymentBtn.addEventListener("click", function() {
+        // Retrieve the amount from the data attribute
+        const amount = this.getAttribute("data-amount");
+        // Construct the UPI URL for payment
+        const upiId = "7013049899@ybl";  
+        const note = "Payment for your order";
+        const upiUrl = `upi://pay?pa=${upiId}&pn=&mc=&tid=&tr=&tn=${note}&am=${amount}&cu=INR`;
+        // Redirect to the UPI payment page
+        redirectToPayment(upiUrl);
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.3/axios.min.js"></script>
+</body>
+</html>
+

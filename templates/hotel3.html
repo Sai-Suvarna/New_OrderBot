@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chat Bot</title>
+    <link rel="stylesheet" href="/static/CSS/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+      <!-- <link rel="stylesheet" type="text/css" href="static/CSS/index.css" /> -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      
+</head>
+<body style="background-color: lavender">
+    <nav class="navbar navbar-expand-sm sticky-top" style="background-color:rgba(45, 45, 170, 0.763); ">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+              <img src="/static/vasena_poli.jpg" alt="logo"
+          style="height:77px;width:85px;border-radius: 50%;">&nbsp; </a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <i class="fa fa-bars" aria-hidden="true"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto" style="float:right;">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#" style="color:white;font-weight: bold;font-size:24px">ABOUT</a>
+                    </li>
+                    <!-- <li class="nav-item">
+                        <a class="nav-link" href="#">Link</a>
+                    </li> -->
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <section id="banner">
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            <div class="main-title">Welcome to Vasena Poli</div>
+            <div id="chat-container"></div>
+            <center>
+              <input type="text" id="user-message" placeholder="Ask question...." autofocus />
+              <button id="send-button" type="submit"><i class="fa fa-paper-plane fa-lg"></i></button>
+              <button type="submit" id="startButton"><i class="fa fa-microphone fa-lg"></i></button>
+              <button type="submit" id="stopButton"><i class="fa fa-microphone-slash fa-lg" style="--fa-primary-color: #ffffff; --fa-secondary-color: #ffffff;"></i></button>
+              <button type="submit" id="placeOrder" style="background-color: rgba(0, 0, 255, 0.763); color:white;">Place Order</button>
+            </center>
+          </div>
+          
+          <div class="col-md-6 text-center" style="margin-top: 1%;">
+            <div id="table-content" align="center">
+              <!-- Add tab components here -->
+              <ul class="nav nav-tabs" role="tablist">
+                <li class="nav-item" role="presentation">
+                  <a class="nav-link active" id="menu-tab" data-bs-toggle="tab" href="#menu-content" role="tab" aria-controls="menu-content" aria-selected="true" style="font-size:22px;font-weight: 500;">Menu</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <a class="nav-link" id="order-tab" data-bs-toggle="tab" href="#order-content" role="tab" aria-controls="order-content" aria-selected="false" style="font-size:22px;font-weight: 500;">Order</a>
+                </li>
+              </ul>
+              <div class="tab-content">
+                <div class="tab-pane fade show active" id="menu-content" role="tabpanel" aria-labelledby="menu-tab">
+                  <!-- Menu content goes here -->
+                  <div class="table-container">
+                    <table id="menu">
+                      <thead>
+                        <tr>
+                                <th>Item</th>
+                                <th>Cost (in Rs.)</th>
+                              </tr>
+                      </thead>
+                      <tbody>
+                        <tr><td>Jowar Idli (3 Pcs)</td><td> 60/-</td></tr>
+                        <tr><td>Multi Millet Idli (3 Pcs)</td><td> 60/-</td></tr>
+                        <tr><td>Barnyard Millet Idli (4 Pcs)</td><td> 80/-</td></tr>
+                        <tr><td>Foxtail Millet Idli (4 Pcs) </td><td>80/-</td></tr>
+                        <tr><td>Bajra Millet Idli (4 Pcs)</td><td> 80/-</td></tr>
+                        <tr><td>Ragi Idli (3 Pcs) </td><td>60/-</td></tr>
+                        <tr><td>Little Millet idli (4 Pcs)</td><td> 80/-</td></tr>
+                        <tr><td>Ragi Idli (2 Pcs) </td><td>40/-</td></tr>
+                        <tr><td>Jowar Idli (2 Pcs)</td><td> 40/-</td></tr>
+                        <tr><td>Multi Millet Idli (2 Pcs)</td><td> 40/-</td></tr>
+                        <tr><td>Foxtail Millet Idli (2 Pcs) Koralu </td><td>40/-</td></tr>
+                        <tr><td>Barnyard Millet Idli - 2 Pcs (oodalu)</td><td> 40/-</td></tr>
+                        <tr><td>Bajra Millet Idli (2 Pcs) </td><td>40/-</td></tr>
+                        <tr><td>Ragi Idli (4 Pcs) </td><td>80/-</td></tr>
+                        <tr><td>Little Millet Idli-2 Pcs (samalu) </td><td>40/-</td></tr>
+                        <tr><td>Jawar Idli (3 Pcs)</td><td>60/-</td></tr></td></tr>
+                        <tr><td>Multi Millet Idli (3 Pcs) </td><td>60/-</td></tr>
+                        <tr><td>Barnyard Millet Idli (4 Pcs) </td><td>80/-</td></tr>
+                        <tr><td>Foxtail Millet idli (4 Pcs) </td><td>80/-</td></tr>
+                        <tr><td>Bajra Millet Idli(4 Pcs) </td><td>80/-</td></tr>
+                        <tr><td>Ragi Idli (3 Pcs) </td><td>60/-</td></tr>
+                        <tr><td>Jawar Idli (4 Pcs)</td><td> 80/-</td></tr>
+                        <tr><td>Little Millet idli (4 Pcs)</td><td> 80/-</td></tr>
+                        <tr><td>Multi Millet Idli (4pcs)</td><td> 80/-</td></tr>
+                        <tr><td>Barnyard Millet Idli (3 Pcs)</td><td> 60/-</td></tr>
+                        <tr><td>Bajra Millet Idli(3 Pcs)</td><td> 60/-</td></tr>
+                        <tr><td>Foxtail Millet idli (3 Pcs) </td><td>60/-</td></tr>
+                        <tr><td>Little Millet idli (3 Pcs) </td><td>60/-</td></tr>  
+                
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                
+                <div class="tab-pane fade" id="order-content" role="tabpanel" aria-labelledby="order-tab">
+                  <!-- Order content goes here -->
+                  <!-- You can add your order-related components and content here -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>   
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.3/axios.min.js"></script>
+ <script src="/static/JS/app3.js"> </script>
+</body>
+</html>

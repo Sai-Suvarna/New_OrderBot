@@ -1,0 +1,14 @@
+fastapi
+uvicorn
+openai==0.28
+jinja2
+python-dotenv
+twilio
+python-decouple
+qrcode
+fastapi-sessions
+python-multipart
+asyncpg 
+databases
+google-cloud-bigquery
+pandas

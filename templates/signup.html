@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign Up</title>
+    <script>
+        function validateForm() {
+            // Validate username
+            const username = document.getElementById('username').value;
+            const usernamePattern = /^[1-9][0-9]{9}$/;  // Username of length 10, starting from 1-9
+            if (!username.match(usernamePattern)) {
+                alert('Username must be exactly 10 characters long and start from 1-9.');
+                return false;
+            }
+
+            // Validate password
+            const password = document.getElementById('password').value;
+            const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#$!%^&*])[A-Za-z\d@#$!%^&*]{8,}$/;
+            if (!password.match(passwordPattern)) {
+                alert('Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character.');
+                return false;
+            }
+        }
+    </script>
+    <style>
+      form{
+        background-color: rgba(237, 145, 237, 0.516);
+        width:30%;
+        margin-top: 2%;
+        font-size:20px;
+        padding: 2%;
+        border-radius: 10%;
+        font-family: Georgia, 'Times New Roman', Times, serif;
+        margin-left: 30%;
+      }
+      input[type=submit]{
+        background-color: blueviolet;
+        font-size:18px;
+        color:white;
+        border-radius: 20%;
+        padding: 2%;
+      }
+      input[type=submit]:hover{
+        background-color:rgb(170, 213, 221);
+        font-size:18px;
+        color:black;
+        border-radius: 20%;
+        padding: 2%;
+      }
+      body{
+        background-image: url('https://i.pinimg.com/736x/86/2c/85/862c857176d0792a5b01f7dbfe9d1dc5.jpg');
+       background-repeat: no-repeat;
+       background-size: cover;
+    }
+    </style>
+</head>
+<body  style="margin-top: 10%;">
+    <center>
+    <form action="/signup" method="post" onsubmit="return validateForm()">
+        <h1>Sign Up</h1>
+        <p><b>Note: </b>Password should contain atleast 8 characters, 1 uppercase, 1 lowercase, 1 number, 1 special character.</p>
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" maxlength="10" required placeholder="Phone Number"><br><br>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" minlength="8" required><br><br>
+
+        <input type="submit" value="Sign Up"> <br>
+        <p>Already a registerd user  <a href="/login">Login</a></p>
+    </form>
+    
+</center>
+</body>
+</html>

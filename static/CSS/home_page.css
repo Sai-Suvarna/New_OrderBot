@@ -1,0 +1,165 @@
+ /* Reset some default styles */
+ body, h1, h2, h3, p, ul, li {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    /* background-image: linear-gradient(to right, rgba(49, 58, 152, 0.621), rgba(144, 168, 193, 0.258)); */
+    /* background-image: url(https://c4.wallpaperflare.com/wallpaper/495/760/53/cuisine-food-india-indian-wallpaper-preview.jpg); */
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background-color: lavender;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+nav ul {
+    list-style: none;
+}
+
+nav ul li {
+    display: inline-block;
+    margin-right: 15px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    font-size: 24px;
+    color:black;
+    /* background-color: #164263; */
+    padding: 10px;
+}
+nav ul li a:hover{
+    color: #3030a8;
+    /* background-color: #a1bfd6; */
+    font-weight: bold;
+}
+.logo img {
+    width: 10%;
+    border-radius: 50%;
+}
+
+.card-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    /* width: 80%; */
+    max-width: 1200px;
+    /* background-color: rgba(228, 205, 199, 0.25); */
+}
+
+.card {
+    width:calc(30%);
+    margin: 30px;
+    border-radius: 70%;
+    padding: 25px;
+    opacity: 1;
+    background-color: #ffffff;
+    text-align: center;
+    box-shadow: 0px 4px 8px rgba(1, 1, 1, 0.5);
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 4px 8px rgba(182, 28, 85, 0.5);
+}
+
+.card img {
+    max-width: 50%;
+    height: auto;
+}
+footer {
+    background-color:#26263e; 
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    color:white;
+    max-height: fit-content;
+    padding: 20px 0;
+    margin-top: -2%;
+}
+footer ul {
+    display: flex;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+footer ul li {
+    list-style: none;
+}
+
+footer ul li a {
+    width: 50px;
+    height: 50px;
+    background-color: #fcf8f8;
+    text-align: center;
+    line-height: 50px;
+    font-size: 20px;
+    margin: 10px;
+    display: block;
+    border-radius: 50%;
+    position: relative;
+    overflow: hidden;
+    border: 3px solid #121111;
+    z-index: 1;
+}
+
+footer ul li a .icon {
+    position: relative;
+    color: #101011;
+    transition: .5s;
+    z-index: 3;
+}
+
+footer ul li a:hover .icon {
+    color: #fff;
+    transform: rotateY(360deg);
+}
+
+footer ul li a:before {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #f00;
+    transition: .5s;
+    z-index: 2;
+}
+
+footer ul li a:hover:before {
+    top: 0;
+}
+
+footer ul li:nth-child(1) a:before {
+    background: #3b5999;
+}
+
+footer ul li:nth-child(2) a:before {
+    background: #55acee;
+}
+
+footer ul li:nth-child(3) a:before {
+    background: #0077b5;
+}
+
+footer ul li:nth-child(4) a:before {
+    background: #dd4b39;
+}
+

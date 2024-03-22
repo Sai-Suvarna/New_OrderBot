@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code Generator</title>
+</head>
+<body>
+    <div id="qrCodeContainer"></div>
+    <div id="message"></div> <!-- Add a message container -->
+
+    <script>
+        // Function to get the value of a query parameter from the URL
+        function getQueryParam(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+
+        // Function to generate and display the QR code based on the selected table number
+        function generateQRCode() {
+            console.log('Generating QR code...'); // Debugging statement
+            const selectedTableNumber = getQueryParam('table');
+            console.log('Selected Table Number:', selectedTableNumber); // Debugging statement
+            if (selectedTableNumber) {
+                const qrCodeContainer = document.getElementById('qrCodeContainer');
+                const messageContainer = document.getElementById('message'); // Get the message container
+                // Clear previous content of the containers
+                qrCodeContainer.innerHTML = '';
+                messageContainer.innerHTML = '';
+                try {
+                    // Generate the URL for the endpoint that generates QR codes
+                    const qrImagePath = `/generate_qr?table=${selectedTableNumber}`;
+                    // Create an image element and set its source to the generated QR code image
+                    const qrImage = document.createElement('img');
+                    qrImage.src = qrImagePath;
+                    // Append the image to the QR code container
+                    qrCodeContainer.appendChild(qrImage);
+                    // Display a message
+                    messageContainer.innerHTML = `<p>QR code for Table Number: ${selectedTableNumber}</p>`;
+                } catch (error) {
+                    // Handle QR code generation error
+                    console.error('Error generating QR code:', error);
+                    messageContainer.innerHTML = '<p>Error generating QR code. Please try again.</p>';
+                }
+            } else {
+                const messageContainer = document.getElementById('message'); // Get the message container
+                // Display an error message
+                messageContainer.innerHTML = '<p>Error: Table number not found in query parameter</p>';
+            }
+        }
+
+        // Call the generateQRCode function when the page loads
+        window.onload = generateQRCode; // Pass a reference to the function without invoking it
+    </script>
+</body>
+</html>

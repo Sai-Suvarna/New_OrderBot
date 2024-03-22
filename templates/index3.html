@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Table Selection</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        margin: 0;
+        padding: 0;
+        background-image: url("/static/table.jpg"); /* Add your background image file here */
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        display: flex;
+        flex-direction: column; /* Adjusted to column layout */
+        justify-content: center;
+        align-items: center;
+        height: 100vh; /* Ensures full viewport height */
+    }
+    h1 {
+        color: rgb(172, 25, 25); /* Set text color */
+    }
+    .table-selection {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 10px;
+        margin-top: 20px; /* Adjusted margin-top */
+    }
+    .table-btn {
+        padding: 20px;
+        font-size: 16px;
+        cursor: pointer;
+        background-color: #008CBA;
+        color: white;
+        border: none;
+        border-radius: 5px;
+    }
+    .table-btn:hover {
+        background-color: #005f7a;
+    }
+    .selected {
+        background-color: #4CAF50 !important;
+    }
+    .go-btn {
+        margin-top: 20px; /* Adjusted margin-top */
+        padding: 20px 40px;
+        font-size: 16px;
+        cursor: pointer;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        text-decoration: none;
+        display: none;
+    }
+    .go-btn:hover {
+        background-color: #45a049;
+    }
+</style>
+</head>
+<body>
+
+<h1 style="color: yellow">Select Your Table Number</h1>
+
+<div class="table-selection">
+    <button class="table-btn" onclick="selectTable(1)">1</button>
+    <button class="table-btn" onclick="selectTable(2)">2</button>
+    <button class="table-btn" onclick="selectTable(3)">3</button>
+    <button class="table-btn" onclick="selectTable(4)">4</button>
+    <button class="table-btn" onclick="selectTable(5)">5</button>
+    <button class="table-btn" onclick="selectTable(6)">6</button>
+    <button class="table-btn" onclick="selectTable(7)">7</button>
+    <button class="table-btn" onclick="selectTable(8)">8</button>
+    <button class="table-btn" onclick="selectTable(9)">9</button>
+    <button class="table-btn" onclick="selectTable(10)">10</button>
+</div>
+
+<button class="go-btn" id="goButton" onclick="redirectToChat()">Go</button>
+
+<script>
+    function selectTable(tableNumber) {
+        var tableButtons = document.querySelectorAll('.table-btn');
+        tableButtons.forEach(function(button) {
+            button.classList.remove('selected');
+        });
+        var selectedButton = document.querySelector('.table-btn:nth-child(' + tableNumber + ')');
+        selectedButton.classList.add('selected');
+        var goButton = document.getElementById("goButton");
+        goButton.style.display = "block"; // Display the Go button
+        goButton.innerHTML = "You selected table: " + tableNumber + "<br>Click here to order!!";
+
+    }
+
+    function redirectToChat() {
+        var selectedTableNumber = document.querySelector('.selected').textContent;
+        // Redirect to the chat page with the selected table number as a query parameter
+        window.location.href = "chat.html?table=" + selectedTableNumber;
+    }
+</script>
+
+
+</body>
+</html>

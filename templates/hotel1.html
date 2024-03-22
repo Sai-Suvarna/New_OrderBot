@@ -1,0 +1,1084 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chat Bot</title>
+    <link rel="stylesheet" href="/static/CSS/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+      <!-- <link rel="stylesheet" type="text/css" href="static/CSS/index.css" /> -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body style="background-color: lavender">
+    <nav class="navbar navbar-expand-sm sticky-top" style="background-color:rgba(45, 45, 170, 0.763); ">
+        <div class="container">
+            <a class="navbar-brand" href="#"><img src="/static/zamindari.png" alt="logo"
+              style="height:70px;width:120%;border-radius: 30%;">&nbsp; </a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <i class="fa fa-bars" aria-hidden="true"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto" style="float:right;">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#" style="color:white;font-weight: bold;font-size:24px" , onclick="getUrlParameter()">ABOUT</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <section id="banner">
+      <div class="container">
+        <div class="row">
+          <!-- Chat Column -->
+          <div class="col-md-6">
+            <div class="main-title">Welcome to Our Restaurant</div>
+            <div id="chat-container"></div>
+            <center>
+              <input type="text" id="user-message" placeholder="Ask question...." autofocus />
+              <button id="send-button" type="submit"><i class="fa fa-paper-plane fa-lg"></i></button>
+              <button type="submit" id="startButton"><i class="fa fa-microphone fa-lg"></i></button>
+              <button type="submit" id="stopButton"><i class="fa fa-microphone-slash fa-lg" style="--fa-primary-color: #ffffff; --fa-secondary-color: #ffffff;"></i></button>
+              <button type="submit" id="viewOrder" style="background-color: rgba(0, 0, 255, 0.763); color:white;" ">View Order</button>
+            </center>
+          
+          </div>
+          
+          <!-- Menu Column -->
+          <div class="col-md-6 text-center" style="margin-top: 1%;">
+            <div id="table-content" align="center">
+              
+              <div class="tab-content">
+                <!-- Menu content here... -->
+                <ul class="nav nav-tabs" role="tablist">
+                  <li class="nav-item" role="presentation">
+                    <a class="nav-link active" id="menu-tab" data-bs-toggle="tab" href="#menu-content" role="tab" aria-controls="menu-content" aria-selected="true" style="font-size:22px;font-weight: 500;">Menu</a>
+                  </li>
+                  <li class="nav-item" role="presentation">
+                    <a class="nav-link" id="order-tab" data-bs-toggle="tab" href="#order-summary" role="tab" aria-controls="order-summary" aria-selected="false" style="font-size:22px;font-weight: 500;">Order</a>
+                  </li>
+                  <li class="nav-item" role="presentation">
+                    <a class="nav-link" id="details-tab" data-bs-toggle="tab" href="#details-summary" role="tab" aria-controls="details-summary" aria-selected="false" style="font-size:22px;font-weight: 500;">Details</a>
+                  </li>
+                </ul>
+                <div class="tab-content">
+                  <div class="tab-pane fade show active" id="menu-content" role="tabpanel" aria-labelledby="menu-tab">
+                    <!-- Menu content goes here -->
+                    <div class="scrollbar-wrapper">
+                    <div class="table-container">
+                     
+  
+                      <div class="accordion accordion-flush" id="accordionFlushExample">
+                        <div class="accordion-item">
+                          <h4 class="accordion-header">
+  
+                            <div class="row" style="display: flex; align-items: center; justify-content: space-between; color:#ffffff; height: 6vh; background-color: rgba(45, 45, 170, 0.763);">
+                              <div class="col" >Item</div>
+                              <div class="col" >Cost (in Rs.)</div>
+                          </div>
+                          
+                          
+                          </h4>
+                        </div>
+                        
+                        <div class="accordion-item">
+                          <h2 class="accordion-header">
+                            <button style="font-size: 21px; font-family: 'Arial', sans-serif;" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                              Hot and cold Beverages 
+                            </button>
+                          </h2>
+                          <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body">
+                              <div style="display: flex; justify-content: space-between;">
+                                <h6 style="margin-bottom: 2px;">Iced Tea <u></u></h6>
+                                <h6 style="margin-bottom: 2px;">95  rupees</h6>
+                            </div>
+                            <hr style="margin-top: 2px;">
+                            
+                            <div style="display: flex; justify-content: space-between;">
+                                <h6 style="margin-bottom: 2px;">Fresh lime soda <u></u></h6>
+                                <h6 style="margin-bottom: 2px;">75  rupees</h6>
+                            </div>
+                            <hr style="margin-top: 2px;">
+                            
+                            <div style="display: flex; justify-content: space-between;">
+                                <h6 style="margin-bottom: 2px;">Cold coffee <u></u></h6>
+                                <h6 style="margin-bottom: 2px;">95  rupees</h6>
+                            </div>
+                            <hr style="margin-top: 2px;">
+                            
+                            <div style="display: flex; justify-content: space-between;">
+                                <h6 style="margin-bottom: 2px;">Lassi <u></u></h6>
+                                <h6 style="margin-bottom: 2px;">95  rupees</h6>
+                            </div>
+                            <hr style="margin-top: 2px;">
+                            
+                            <div style="display: flex; justify-content: space-between;">
+                                <h6 style="margin-bottom: 2px;">Milk shake <u></u></h6>
+                                <h6 style="margin-bottom: 2px;">95  rupees</h6>
+                            </div>
+                            <hr style="margin-top: 2px;">
+                            
+                            <div style="display: flex; justify-content: space-between;">
+                                <h6 style="margin-bottom: 2px;">Soft drink <u></u></h6>
+                                <h6 style="margin-bottom: 2px;">75  rupees</h6>
+                            </div>
+                            <hr style="margin-top: 2px;">
+                            
+                            <div style="display: flex; justify-content: space-between;">
+                                <h6 style="margin-bottom: 2px;">Soda <u></u></h6>
+                                <h6 style="margin-bottom: 2px;">75  rupees</h6>
+                            </div>
+                            <hr style="margin-top: 2px;">
+                            
+                            <div style="display: flex; justify-content: space-between;">
+                                <h6 style="margin-bottom: 2px;">Mineral water <u></u></h6>
+                                <h6 style="margin-bottom: 2px;">75  rupees</h6>
+                            </div>
+                            <hr style="margin-top: 2px;">
+  
+                            <div style="display: flex; justify-content: space-between;">
+                              <h6 style="margin-bottom: 2px;">Tea <u></u></h6>
+                              <h6 style="margin-bottom: 2px;">75  rupees</h6>
+                          </div>
+                          <hr style="margin-top: 2px;">
+  
+                          <div style="display: flex; justify-content: space-between;">
+                            <h6 style="margin-bottom: 2px;">Coffee <u></u></h6>
+                            <h6 style="margin-bottom: 2px;">75  rupees</h6>
+                        </div>
+                        <hr style="margin-top: 2px;">
+                            
+                            </div>
+                          </div>
+                        </div>
+  
+  
+                        <div class="accordion-item">
+                          <h2 class="accordion-header">
+                            <button style="font-size: 21px; font-family: 'Arial', sans-serif;" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                               Soups Veg
+                            </button>
+                          </h2>
+                          <div id="flush-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body">
+                              <div style="display: flex; justify-content: space-between;">
+                                <h6 style="margin-bottom: 2px;">Wonton soup Veg<u></u></h6>
+                                <h6 style="margin-bottom: 2px;">145  rupees</h6>
+                            </div>
+                            <hr style="margin-top: 2px;">
+                            
+                            <div style="display: flex; justify-content: space-between;">
+                                <h6 style="margin-bottom: 2px;">Manchow soup Veg <u></u></h6>
+                                <h6 style="margin-bottom: 2px;">145  rupees</h6>
+                            </div>
+                            <hr style="margin-top: 2px;">
+                            
+                            <div style="display: flex; justify-content: space-between;">
+                                <h6 style="margin-bottom: 2px;">Creamy style sweet corn soup Veg  <u></u></h6>
+                                <h6 style="margin-bottom: 2px;">145  rupees</h6>
+                            </div>
+                            <hr style="margin-top: 2px;">
+                            
+                            <div style="display: flex; justify-content: space-between;">
+                                <h6 style="margin-bottom: 2px;">Hot and sour soup  Veg<u></u></h6>
+                                <h6 style="margin-bottom: 2px;">145  rupees</h6>
+                            </div>
+                            <hr style="margin-top: 2px;">
+                            
+                            <div style="display: flex; justify-content: space-between;">
+                                <h6 style="margin-bottom: 2px;">Tom yum koong (Spice prawn soup) Veg <u></u></h6>
+                                <h6 style="margin-bottom: 2px;">145  rupees</h6>
+                            </div>
+                            <hr style="margin-top: 2px;">
+                            
+                            <div style="display: flex; justify-content: space-between;">
+                                <h6 style="margin-bottom: 2px;">Clear soup Veg <u></u></h6>
+                                <h6 style="margin-bottom: 2px;">145  rupees</h6>
+                            </div>
+                            <hr style="margin-top: 2px;">
+                            
+                            <div style="display: flex; justify-content: space-between;">
+                                <h6 style="margin-bottom: 2px;">Lemon Coriander Soup Veg <u></u></h6>
+                                <h6 style="margin-bottom: 2px;">145  rupees</h6>
+                            </div>
+                            <hr style="margin-top: 2px;">
+                            
+                            </div>
+                          </div>
+                        </div>
+  
+                        <div class="accordion-item">
+                          <h2 class="accordion-header">
+                            <button style="font-size: 21px; font-family: 'Arial', sans-serif;" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                               Soups  Non-Veg
+                            </button>
+                          </h2>
+                          <div id="flush-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body">
+                              <div style="display: flex; justify-content: space-between;">
+                                <h6 style="margin-bottom: 2px;">Wonton soup  Non-Veg<u></u></h6>
+                                <h6 style="margin-bottom: 2px;">145  rupees</h6>
+                            </div>
+                            <hr style="margin-top: 2px;">
+                            
+                            <div style="display: flex; justify-content: space-between;">
+                                <h6 style="margin-bottom: 2px;">Manchow soup Non-Veg <u></u></h6>
+                                <h6 style="margin-bottom: 2px;">145  rupees</h6>
+                            </div>
+                            <hr style="margin-top: 2px;">
+                            
+                            <div style="display: flex; justify-content: space-between;">
+                                <h6 style="margin-bottom: 2px;">Creamy style sweet corn soup Non-Veg  <u></u></h6>
+                                <h6 style="margin-bottom: 2px;">145  rupees</h6>
+                            </div>
+                            <hr style="margin-top: 2px;">
+                            
+                            <div style="display: flex; justify-content: space-between;">
+                                <h6 style="margin-bottom: 2px;">Hot and sour soup  Non-Veg<u></u></h6>
+                                <h6 style="margin-bottom: 2px;">145  rupees</h6>
+                            </div>
+                            <hr style="margin-top: 2px;">
+                            
+                            <div style="display: flex; justify-content: space-between;">
+                                <h6 style="margin-bottom: 2px;">Tom yum koong (Spice prawn soup) Non-Veg <u></u></h6>
+                                <h6 style="margin-bottom: 2px;">145  rupees</h6>
+                            </div>
+                            <hr style="margin-top: 2px;">
+                            
+                            <div style="display: flex; justify-content: space-between;">
+                                <h6 style="margin-bottom: 2px;">Clear soup  <u></u></h6>
+                                <h6 style="margin-bottom: 2px;">145  rupees</h6>
+                            </div>
+                            <hr style="margin-top: 2px;">
+                            
+                            <div style="display: flex; justify-content: space-between;">
+                                <h6 style="margin-bottom: 2px;">Lemon Coriander Soup Non-Veg <u></u></h6>
+                                <h6 style="margin-bottom: 2px;">145  rupees</h6>
+                            </div>
+                            <hr style="margin-top: 2px;">
+                            
+                            </div>
+                          </div>
+                        </div>
+  
+                        <div class="accordion-item">
+                          <h2 class="accordion-header">
+                            <button style="font-size: 21px; font-family: 'Arial', sans-serif;" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                              Vegetarian Starters
+                            </button>
+                          </h2>
+                          <div id="flush-collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">     <div class="accordion-body">
+                              <div style="display: flex; justify-content: space-between;">
+                                <h6 style="margin-bottom: 2px;">Makai Malai Sheek  <u></u></h6>
+                                <h6 style="margin-bottom: 2px;">285  rupees</h6>
+                            </div>
+                            <hr style="margin-top: 2px;">
+  
+                              <div style="display: flex; justify-content: space-between;">
+                                <h6 style="margin-bottom: 2px;">Dhingri ke Tikke  <u></u></h6>
+                                <h6 style="margin-bottom: 2px;">285  rupees</h6>
+                            </div>
+                            <hr style="margin-top: 2px;">
+  
+                              <div style="display: flex; justify-content: space-between;">
+                                <h6 style="margin-bottom: 2px;">Paneer Tikke Achari   <u></u></h6>
+                                <h6 style="margin-bottom: 2px;">285  rupees</h6>
+                            </div>
+                            <hr style="margin-top: 2px;">
+  
+                              <div style="display: flex; justify-content: space-between;">
+                                <h6 style="margin-bottom: 2px;">Vegetable platter  <u></u></h6>
+                                <h6 style="margin-bottom: 2px;">285  rupees</h6>
+                            </div>
+                            <hr style="margin-top: 2px;">
+  
+                              <div style="display: flex; justify-content: space-between;">
+                                <h6 style="margin-bottom: 2px;">Vegetable Sheek Kebab <u></u></h6>
+                                <h6 style="margin-bottom: 2px;">285  rupees</h6>
+                            </div>
+                            <hr style="margin-top: 2px;">
+  
+                              <div style="display: flex; justify-content: space-between;">
+                                <h6 style="margin-bottom: 2px;">Sonde Aloo  <u></u></h6>
+                                <h6 style="margin-bottom: 2px;">285  rupees</h6>
+                            </div>
+                            <hr style="margin-top: 2px;">
+  
+                              <div style="display: flex; justify-content: space-between;">
+                                <h6 style="margin-bottom: 2px;">Spinach Manchurian  <u></u></h6>
+                                <h6 style="margin-bottom: 2px;">285  rupees</h6>
+                            </div>
+                            <hr style="margin-top: 2px;">
+  
+                              <div style="display: flex; justify-content: space-between;">
+                                <h6 style="margin-bottom: 2px;">Chilly crispy vegetables <u></u></h6>
+                                <h6 style="margin-bottom: 2px;">285  rupees</h6>
+                            </div>
+                            <hr style="margin-top: 2px;">
+  
+                              <div style="display: flex; justify-content: space-between;">
+                                <h6 style="margin-bottom: 2px;">Sesame fingers  <u></u></h6>
+                                <h6 style="margin-bottom: 2px;">285  rupees</h6>
+                            </div>
+                            <hr style="margin-top: 2px;">
+  
+                              <div style="display: flex; justify-content: space-between;">
+                                <h6 style="margin-bottom: 2px;">Mushroom salt & pepper <u></u></h6>
+                                <h6 style="margin-bottom: 2px;">285  rupees</h6>
+                            </div>
+                            <hr style="margin-top: 2px;">
+  
+                              <div style="display: flex; justify-content: space-between;">
+                                <h6 style="margin-bottom: 2px;">Golden fried baby corn <u></u></h6>
+                                <h6 style="margin-bottom: 2px;">285  rupees</h6>
+                            </div>
+                            <hr style="margin-top: 2px;">
+  
+                              <div style="display: flex; justify-content: space-between;">
+                                <h6 style="margin-bottom: 2px;">Vegetable khadda <u></u></h6>
+                                <h6 style="margin-bottom: 2px;">325  rupees</h6>
+                            </div>
+                            <hr style="margin-top: 2px;">
+                            
+                            </div>
+                          </div>
+                        </div>
+  
+  
+                        <div class="accordion-item">
+                          <h2 class="accordion-header">
+                            <button style="font-size: 21px; font-family: 'Arial', sans-serif;" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
+                             Non Vegetarian Starters
+                            </button>
+                          </h2>
+                          <div id="flush-collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+  
+                            <div class="accordion-body">
+                              <div style="display: flex; justify-content: space-between;">
+                                <h6 style="margin-bottom: 2px;">Chicken Tikka<u></u></h6>
+                                <h6 style="margin-bottom: 2px;">345  rupees</h6>
+                             </div>
+                            <hr style="margin-top: 2px;">
+                            
+                            <div style="display: flex; justify-content: space-between;">
+                                <h6 style="margin-bottom: 2px;">Murgh Malai kebab <u></u></h6>
+                                <h6 style="margin-bottom: 2px;">345  rupees</h6>
+                            </div>
+                            <hr style="margin-top: 2px;">
+  
+                            <div style="display: flex; justify-content: space-between;">
+                              <h6 style="margin-bottom: 2px;">Chicken with garlic pepper <u></u></h6>
+                              <h6 style="margin-bottom: 2px;">345  rupees</h6>
+                          </div>
+                          <hr style="margin-top: 2px;">
+  
+                          <div style="display: flex; justify-content: space-between;">
+                            <h6 style="margin-bottom: 2px;">Spice chicken Szechwan <u></u></h6>
+                            <h6 style="margin-bottom: 2px;">345  rupees</h6>
+                        </div>
+                        <hr style="margin-top: 2px;">
+  
+                        <div style="display: flex; justify-content: space-between;">
+                          <h6 style="margin-bottom: 2px;">Crispy chicken <u></u></h6>
+                          <h6 style="margin-bottom: 2px;">345  rupees</h6>
+                      </div>
+                      <hr style="margin-top: 2px;">
+  
+                      <div style="display: flex; justify-content: space-between;">
+                        <h6 style="margin-bottom: 2px;">Tandoori chicken (Half) <u></u></h6>
+                        <h6 style="margin-bottom: 2px;">345  rupees</h6>
+                    </div>
+                    <hr style="margin-top: 2px;">
+                            
+                            <div style="display: flex; justify-content: space-between;">
+                                <h6 style="margin-bottom: 2px;">Kheema balls <u></u></h6>
+                                <h6 style="margin-bottom: 2px;">375  rupees</h6>
+                            </div>
+                            <hr style="margin-top: 2px;">
+                            
+                            <div style="display: flex; justify-content: space-between;">
+                              <h6 style="margin-bottom: 2px;">Lamb Manchurian <u></u></h6>
+                              <h6 style="margin-bottom: 2px;">375  rupees</h6>
+                          </div>
+                          <hr style="margin-top: 2px;">
+                          
+                          <div style="display: flex; justify-content: space-between;">
+                              <h6 style="margin-bottom: 2px;">Fish fingers <u></u></h6>
+                              <h6 style="margin-bottom: 2px;">345  rupees</h6>
+                          </div>
+                          <hr style="margin-top: 2px;">
+                          
+                          <div style="display: flex; justify-content: space-between;">
+                              <h6 style="margin-bottom: 2px;">Tandoori Pomfret <u></u></h6>
+                              <h6 style="margin-bottom: 2px;">895  rupees</h6>
+                          </div>
+                          <hr style="margin-top: 2px;">
+                          
+                          <div style="display: flex; justify-content: space-between;">
+                              <h6 style="margin-bottom: 2px;">Tandoori Vanjaram <u></u></h6>
+                              <h6 style="margin-bottom: 2px;">895  rupees</h6>
+                          </div>
+                          <hr style="margin-top: 2px;">
+                          
+                          <div style="display: flex; justify-content: space-between;">
+                              <h6 style="margin-bottom: 2px;">Prawn 'N' garlic butter <u></u></h6>
+                              <h6 style="margin-bottom: 2px;">425  rupees</h6>
+                          </div>
+                          <hr style="margin-top: 2px;">
+                          
+                          <!-- Continue the same pattern for the remaining items -->
+                          <div style="display: flex; justify-content: space-between;">
+                            <h6 style="margin-bottom: 2px;">Lasooni Jhinga (Jumbo Prawn) <u></u></h6>
+                            <h6 style="margin-bottom: 2px;">1899  rupees</h6>
+                        </div>
+                        <hr style="margin-top: 2px;">
+                        
+                        <div style="display: flex; justify-content: space-between;">
+                            <h6 style="margin-bottom: 2px;">Chicken Khadda <u></u></h6>
+                            <h6 style="margin-bottom: 2px;">425  rupees</h6>
+                        </div>
+                        <hr style="margin-top: 2px;">
+                                        
+                          </div>
+                          </div>
+                        </div>    
+  
+                        <div class="accordion-item">
+                          <h2 class="accordion-header">
+                            <button style="font-size: 21px; font-family: 'Arial', sans-serif;" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFive" aria-expanded="false" aria-controls="flush-collapseFive">
+                              Main Course (Vegetarian)
+                            </button>
+                          </h2>
+                          <div id="flush-collapseFive" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body">
+                              <div style="display: flex; justify-content: space-between;">
+                                <h6 style="margin-bottom: 2px;">Paneer Baby Corn Masala <u></u></h6>
+                                <h6 style="margin-bottom: 2px;">345  rupees</h6>
+                            </div>
+                            <hr style="margin-top: 2px;">
+  
+                            <div style="display: flex; justify-content: space-between;">
+                              <h6 style="margin-bottom: 2px;">Paneer Methi Chaman <u></u></h6>
+                              <h6 style="margin-bottom: 2px;">345  rupees</h6>
+                          </div>
+                          <hr style="margin-top: 2px;">
+  
+                          <div style="display: flex; justify-content: space-between;">
+                            <h6 style="margin-bottom: 2px;">Malai Kofta <u></u></h6>
+                            <h6 style="margin-bottom: 2px;">345  rupees</h6>
+                        </div>
+                        <hr style="margin-top: 2px;">
+  
+                        <div style="display: flex; justify-content: space-between;">
+                          <h6 style="margin-bottom: 2px;">Aloo Ghobi masala <u></u></h6>
+                          <h6 style="margin-bottom: 2px;">345  rupees</h6>
+                      </div>
+                      <hr style="margin-top: 2px;">
+  
+                      <div style="display: flex; justify-content: space-between;">
+                        <h6 style="margin-bottom: 2px;">Vegetable Jalfrezi <u></u></h6>
+                        <h6 style="margin-bottom: 2px;">345  rupees</h6>
+                    </div>
+                    <hr style="margin-top: 2px;">
+  
+                    <div style="display: flex; justify-content: space-between;">
+                      <h6 style="margin-bottom: 2px;">Stuffed capsicum masala <u></u></h6>
+                      <h6 style="margin-bottom: 2px;">345  rupees</h6>
+                  </div>
+                  <hr style="margin-top: 2px;">
+                            
+                            <div style="display: flex; justify-content: space-between;">
+                                <h6 style="margin-bottom: 2px;">Dal Makhani <u></u></h6>
+                                <h6 style="margin-bottom: 2px;">175  rupees</h6>
+                            </div>
+                            <hr style="margin-top: 2px;">
+                            
+                            <!-- Continue the same pattern for the remaining items -->
+                            <div style="display: flex; justify-content: space-between;">
+                              <h6 style="margin-bottom: 2px;">Dal fry <u></u></h6>
+                              <h6 style="margin-bottom: 2px;">175  rupees</h6>
+                          </div>
+                          <hr style="margin-top: 2px;">
+                                                                                                                                                                                                                                          
+                        </div>
+                          </div>
+                        </div> 
+  
+  
+                        <div class="accordion-item">
+                          <h2 class="accordion-header">
+                            <button style="font-size: 21px; font-family: 'Arial', sans-serif;" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseSix" aria-expanded="false" aria-controls="flush-collapseSix">
+                              Main Course (Non Vegetarian)
+                            </button>
+                          </h2>
+                          <div id="flush-collapseSix" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body">
+                              <div style="display: flex; justify-content: space-between;">
+                                <h6 style="margin-bottom: 2px;">
+                                  Chicken Tikka masala <u></u></h6>
+                                <h6 style="margin-bottom: 2px;">375  rupees</h6>
+                            </div>
+                            <hr style="margin-top: 2px;">
+                            
+                            <div style="display: flex; justify-content: space-between;">
+                                <h6 style="margin-bottom: 2px;">Kadai chicken <u></u></h6>
+                                <h6 style="margin-bottom: 2px;">375  rupees</h6>
+                            </div>
+                            <hr style="margin-top: 2px;">
+                            
+                            <!-- Continue the same pattern for the remaining items -->
+                            <div style="display: flex; justify-content: space-between;">
+                              <h6 style="margin-bottom: 2px;">Chicken Chettinadu <u></u></h6>
+                              <h6 style="margin-bottom: 2px;">375  rupees</h6>
+                          </div>
+                          <hr style="margin-top: 2px;">
+                          
+                          <div style="display: flex; justify-content: space-between;">
+                              <h6 style="margin-bottom: 2px;">Rogan-e- Dosht <u></u></h6>
+                              <h6 style="margin-bottom: 2px;">425  rupees</h6>
+                          </div>
+                          <hr style="margin-top: 2px;">
+                          
+                          <!-- Continue the same pattern for the remaining items -->
+                          <div style="display: flex; justify-content: space-between;">
+                            <h6 style="margin-bottom: 2px;">Dhaba Gosht <u></u></h6>
+                            <h6 style="margin-bottom: 2px;">425  rupees</h6>
+                        </div>
+                        <hr style="margin-top: 2px;">
+                        
+                        <div style="display: flex; justify-content: space-between;">
+                            <h6 style="margin-bottom: 2px;">Sarson ki Machli  <u></u></h6>
+                            <h6 style="margin-bottom: 2px;">375  rupees</h6>
+                        </div>
+                        <hr style="margin-top: 2px;">
+                        
+                        <!-- Continue the same pattern for the remaining items -->
+                        <div style="display: flex; justify-content: space-between;">
+                          <h6 style="margin-bottom: 2px;">Machi Amritsari <u></u></h6>
+                          <h6 style="margin-bottom: 2px;">375  rupees</h6>
+                      </div>
+                      <hr style="margin-top: 2px;">
+                      
+                      <div style="display: flex; justify-content: space-between;">
+                          <h6 style="margin-bottom: 2px;">Haldi Mirchi Jhinga <u></u></h6>
+                          <h6 style="margin-bottom: 2px;">475  rupees</h6>
+                      </div>
+                      <hr style="margin-top: 2px;">
+                                                                                                                                                                                                                  
+                            </div>
+                          </div>
+                        </div>
+                        
+  
+                        <div class="accordion-item">
+                          <h2 class="accordion-header">
+                            <button style="font-size: 21px; font-family: 'Arial', sans-serif;" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseSeven" aria-expanded="false" aria-controls="flush-collapseSeven">
+                              Indian Breads
+                            </button>
+                          </h2>
+                          <div id="flush-collapseSeven" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+  
+                            <div class="accordion-body">
+                              <div style="display: flex; justify-content: space-between;">
+                              <h6 style="margin-bottom: 2px;">Rumali Roti <u></u></h6>
+                              <h6 style="margin-bottom: 2px;">75  rupees</h6>
+                          </div>
+                          <hr style="margin-top: 2px;">
+                          
+                          <div style="display: flex; justify-content: space-between;">
+                              <h6 style="margin-bottom: 2px;">Butter Naan <u></u></h6>
+                              <h6 style="margin-bottom: 2px;">95  rupees</h6>
+                          </div>
+                          <hr style="margin-top: 2px;">
+                          
+                          <!-- Continue the same pattern for the remaining items -->
+                          <div style="display: flex; justify-content: space-between;">
+                            <h6 style="margin-bottom: 2px;">Roti  <u></u></h6>
+                            <h6 style="margin-bottom: 2px;">75  rupees</h6>
+                        </div>
+                        <hr style="margin-top: 2px;">
+                        
+                        <div style="display: flex; justify-content: space-between;">
+                            <h6 style="margin-bottom: 2px;">Phulka (2 pcs) <u></u></h6>
+                            <h6 style="margin-bottom: 2px;">75  rupees</h6>
+                        </div>
+                        <hr style="margin-top: 2px;">
+                                               
+                        </div> 
+                          </div>
+                        </div>
+                        
+                        <div class="accordion-item">
+                          <h2 class="accordion-header">
+                            <button style="font-size: 21px; font-family: 'Arial', sans-serif;" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseEight" aria-expanded="false" aria-controls="flush-collapseEight">
+                              Sizzlers
+                            </button>
+                          </h2>
+                          <div id="flush-collapseEight" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+  
+                            <div class="accordion-body">
+                              <div style="display: flex; justify-content: space-between;">
+                                <h6 style="margin-bottom: 2px;">Chicken in smoked Barbeque Sauce 
+                                  <u></u></h6>
+                                <h6 style="margin-bottom: 2px;">475  rupees</h6>
+                            </div>
+                            <hr style="margin-top: 2px;">
+                            
+                            <div style="display: flex; justify-content: space-between;">
+                                <h6 style="margin-bottom: 2px;">Desi Veg shaslik sizzler <u></u></h6>
+                                <h6 style="margin-bottom: 2px;">475  rupees</h6>
+                            </div>
+                            <hr style="margin-top: 2px;">
+                                                                                                                                                                                                            
+                            </div>
+                          </div>
+                        </div>
+  
+                        <div class="accordion-item">
+                          <h2 class="accordion-header">
+                            <button style="font-size: 21px; font-family: 'Arial', sans-serif;" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseNine" aria-expanded="false" aria-controls="flush-collapseNine">
+  
+                              Rice and Noodles (Vegetarian)
+                            </button>
+                          </h2>
+                          <div id="flush-collapseNine" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body">
+                              <div style="display: flex; justify-content: space-between;">
+                                <h6 style="margin-bottom: 2px;">Vegetable Biryani <u></u></h6>
+                                <h6 style="margin-bottom: 2px;">345  rupees</h6>
+                            </div>
+                            <hr style="margin-top: 2px;">
+                            
+                            <div style="display: flex; justify-content: space-between;">
+                                <h6 style="margin-bottom: 2px;">Peas Pulao <u></u></h6>
+                                <h6 style="margin-bottom: 2px;">345  rupees</h6>
+                            </div>
+                            <hr style="margin-top: 2px;">
+                            
+                            <div style="display: flex; justify-content: space-between;">
+                              <h6 style="margin-bottom: 2px;"> Jeera Fried Rice <u></u></h6>
+                              <h6 style="margin-bottom: 2px;">345  rupees</h6>
+                          </div>
+                          <hr style="margin-top: 2px;">
+  
+                          <div style="display: flex; justify-content: space-between;">
+                            <h6 style="margin-bottom: 2px;"> Szechwan Fried Rice <u></u></h6>
+                            <h6 style="margin-bottom: 2px;">345  rupees</h6>
+                        </div>
+                        <hr style="margin-top: 2px;">
+  
+                        <div style="display: flex; justify-content: space-between;">
+                          <h6 style="margin-bottom: 2px;"> American Chopsuey<u></u></h6>
+                          <h6 style="margin-bottom: 2px;">345  rupees</h6>
+                      </div>
+                      <hr style="margin-top: 2px;">
+  
+                      <div style="display: flex; justify-content: space-between;">
+                                <h6 style="margin-bottom: 2px;"> Singapore Rice Noodles <u></u></h6>
+                                <h6 style="margin-bottom: 2px;">345  rupees</h6>
+                            </div>
+                            <hr style="margin-top: 2px;">
+                            
+                            </div>
+                          </div>
+                        </div>
+                        
+
+                        <div class="accordion-item">
+                          <h2 class="accordion-header">
+                            <button style="font-size: 21px; font-family: 'Arial', sans-serif;" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTen" aria-expanded="false" aria-controls="flush-collapseTen">
+                              Rice and Noodles (Non Vegetarian)
+                            </button>
+                          </h2>
+                          <div id="flush-collapseTen" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+  
+                            <div class="accordion-body">
+                              <div style="display: flex; justify-content: space-between;">
+                                <h6 style="margin-bottom: 2px;">Murgh Biryani <u></u></h6>
+                                <h6 style="margin-bottom: 2px;">425  rupees</h6>
+                            </div>
+                            <hr style="margin-top: 2px;">
+                            
+                            <div style="display: flex; justify-content: space-between;">
+                                <h6 style="margin-bottom: 2px;">Gosht Biryani <u></u></h6>
+                                <h6 style="margin-bottom: 2px;">475  rupees</h6>
+                            </div>
+                            <hr style="margin-top: 2px;">
+                            
+                            <div style="display: flex; justify-content: space-between;">
+                                <h6 style="margin-bottom: 2px;">Chicken Fried Rice</h6> <u></u></h6>
+                                <h6 style="margin-bottom: 2px;">425  rupees</h6>
+                            </div>
+                            <hr style="margin-top: 2px;">
+                            
+                            <div style="display: flex; justify-content: space-between;">
+                                <h6 style="margin-bottom: 2px;">Singapore Rice Noodles <u></u></h6>
+                                <h6 style="margin-bottom: 2px;">425  rupees</h6>
+                            </div>
+                            <hr style="margin-top: 2px;">
+                            
+                            <div style="display: flex; justify-content: space-between;">
+                                <h6 style="margin-bottom: 2px;">American Chopsuey <u></u></h6>
+                                <h6 style="margin-bottom: 2px;">425  rupees</h6>
+                            </div>
+                            <hr style="margin-top: 2px;">
+                            
+                            <div style="display: flex; justify-content: space-between;">
+                                <h6 style="margin-bottom: 2px;">Mixed fried rice / noodles <u></u></h6>
+                                <h6 style="margin-bottom: 2px;">475  rupees</h6>
+                            </div>
+                            <hr style="margin-top: 2px;">
+                            
+                            </div>
+                          </div>
+                        </div>
+                        
+                        
+                        <div class="accordion-item">
+                          <h2 class="accordion-header">
+                            <button style="font-size: 21px; font-family: 'Arial', sans-serif;" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseEleven" aria-expanded="false" aria-controls="flush-collapseEleven">
+                              Desserts
+                            </button>
+                          </h2>
+                          <div id="flush-collapseEleven" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body">
+                              <div style="display: flex; justify-content: space-between;">
+                                <h6 style="margin-bottom: 2px;">Chocolate fondue <u></u></h6>
+                                <h6 style="margin-bottom: 2px;">475  rupees</h6>
+                            </div>
+                            <hr style="margin-top: 2px;">
+                            
+                            <div style="display: flex; justify-content: space-between;">
+                                <h6 style="margin-bottom: 2px;">Sizzling Brownie <u></u></h6>
+                                <h6 style="margin-bottom: 2px;">225  rupees</h6>
+                            </div>
+                            <hr style="margin-top: 2px;">
+                            
+                            <div style="display: flex; justify-content: space-between;">
+                                <h6 style="margin-bottom: 2px;">Drunken Prunes  <u></u></h6>
+                                <h6 style="margin-bottom: 2px;">195  rupees</h6>
+                            </div>
+                            <hr style="margin-top: 2px;">
+                            
+                            <div style="display: flex; justify-content: space-between;">
+                                <h6 style="margin-bottom: 2px;">Blue Berry Cheese Cake <u></u></h6>
+                                <h6 style="margin-bottom: 2px;">195  rupees</h6>
+                            </div>
+                            <hr style="margin-top: 2px;">
+                            
+                            <div style="display: flex; justify-content: space-between;">
+                                <h6 style="margin-bottom: 2px;">Tiramisu <u></u></h6>
+                                <h6 style="margin-bottom: 2px;">195  rupees</h6>
+                            </div>
+                            <hr style="margin-top: 2px;">
+                            
+                            <div style="display: flex; justify-content: space-between;">
+                                <h6 style="margin-bottom: 2px;">Baked Alaska <u></u></h6>
+                                <h6 style="margin-bottom: 2px;">225  rupees</h6>
+                            </div>
+                            <hr style="margin-top: 2px;">
+                            
+                            <div style="display: flex; justify-content: space-between;">
+                                <h6 style="margin-bottom: 2px;">Banana Split <u></u></h6>
+                                <h6 style="margin-bottom: 2px;">195  rupees</h6>
+                            </div>
+                            <hr style="margin-top: 2px;">
+  
+                            <div style="display: flex; justify-content: space-between;">
+                              <h6 style="margin-bottom: 2px;">Ice Cream <u></u></h6>
+                              <h6 style="margin-bottom: 2px;">175  rupees</h6>
+                          </div>
+                          <hr style="margin-top: 2px;">
+  
+                          <div style="display: flex; justify-content: space-between;">
+                            <h6 style="margin-bottom: 2px;">Fruit Salad <u></u></h6>
+                            <h6 style="margin-bottom: 2px;">175  rupees</h6>
+                        </div>
+                        <hr style="margin-top: 2px;">
+                            
+                            </div>
+                          </div>
+                        </div>
+                          
+                       
+                        
+                      </div>
+                    </div>
+                  </div>
+                  </div>
+  
+                  
+                  <div class="tab-pane" id="order-summary" role="tabpanel" aria-labelledby="order-tab" style="height: 535px;">
+                    <div id="order-summary-content" style="background-color: white;"></div>
+                    <div id="payment-image" style="display: none;">
+                      <!-- QR code image will be displayed here -->
+                      <img id="qrCodeImage" src="" alt="Payment QR Code" width="50%" height="300px"/>
+                    </div>
+                    <button id="makePaymentButton" class="btn btn-primary mt-3" style="display: none;">Make Payment</button>
+                    <button id="placeAnotherOrderButton" class="btn btn-primary mt-3" style="display: none;">Place Another Order</button>
+
+                  </div>  
+                  
+                  <div class="tab-pane" id="details-summary" role="tabpanel" aria-labelledby="details-tab" style="height: 535px;">
+                    <div id="tableNumberDisplay">Loading table number...</div>
+                    <div id="sessionDisplay">Loading session ID...</div>
+                    <!-- <div id="final-list-table"></div> -->
+                  </div>
+                 </div>
+
+                </div>
+  
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <script>
+
+function getUrlParameter(name) {
+    name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+    var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+    var results = regex.exec(location.search);
+    return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+}
+
+function displayTableNumberAndSessionId() {
+    var tableNumber = getUrlParameter('table');
+    var sessionId = getUrlParameter('sessionId');
+
+    if (tableNumber !== '') {
+        setCookie('tableNumber', tableNumber, 1); // Set cookie for 1 day
+        document.getElementById('tableNumberDisplay').textContent = 'Your table number is: ' + tableNumber;
+    } else {
+        console.log('Table number not found in URL');
+    }
+
+    if (sessionId !== '') {
+        setCookie('sessionId', sessionId, 1); // Set cookie for 1 day
+        document.getElementById('sessionDisplay').textContent = 'Session ID: ' + sessionId;
+    } else {
+        console.log('Session ID not found in URL');
+    }
+}
+
+function setCookie(name, value, days) {
+    var expires = "";
+    if (days) {
+        var date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        expires = "; expires=" + date.toUTCString();
+    }
+    document.cookie = name + "=" + value + expires + "; path=/";
+}
+
+function getCookie(name) {
+    var nameEQ = name + "=";
+    var ca = document.cookie.split(';');
+    for(var i=0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') c = c.substring(1,c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+    }
+    return null;
+}
+
+function copyText(itemName) {
+        const textToCopy = itemName;
+        navigator.clipboard.writeText(textToCopy).then(function() {
+            alert('Copied ' + textToCopy + ' to clipboard');
+        }, function() {
+            alert('Failed to copy ' + textToCopy + ' to clipboard');
+        });
+    }
+
+window.onload = function() {
+    // Attempt to load table number and session ID from cookies first
+    var tableNumber = getCookie('tableNumber');
+    var sessionId = getCookie('sessionId');
+
+    if (tableNumber) {
+        document.getElementById('tableNumberDisplay').textContent = 'Your table number is: ' + tableNumber;
+    }
+
+    if (sessionId) {
+        document.getElementById('sessionDisplay').textContent = 'Session ID: ' + sessionId;
+    }
+
+    // If not found in cookies, extract from URL and store in cookies
+    if (!tableNumber || !sessionId) {
+        displayTableNumberAndSessionId();
+    }
+    
+};
+
+
+
+function displayOrderSummary(orderSummary)
+{
+  const orderSummaryContentDiv = document.getElementById('order-summary-content');
+  orderSummaryContentDiv.innerHTML = ''; // Clear existing content
+
+  // Create a new table element to display the order summary
+  const table = document.createElement('table');
+  table.classList.add('table', 'table-bordered');
+
+  // Create the table header
+  const thead = document.createElement('thead');
+  const headerRow = document.createElement('tr');
+  const headerItem = document.createElement('th');
+  headerItem.textContent = 'Item Name';
+  headerRow.appendChild(headerItem);
+  const headerQuantity = document.createElement('th');
+  headerQuantity.textContent = 'Quantity';
+  headerRow.appendChild(headerQuantity);
+  const headerPrice = document.createElement('th');
+  headerPrice.textContent = 'Price/Item(Rs.)';
+  headerRow.appendChild(headerPrice);
+  thead.appendChild(headerRow);
+  table.appendChild(thead);
+
+  // Create the table body
+  const tbody = document.createElement('tbody');
+  let totalAmount = 0; // Variable to store the total amount
+  for (const item of orderSummary) {
+        const row = document.createElement('tr');
+        const itemName = document.createElement('td');
+        itemName.textContent = item.items;
+        row.appendChild(itemName);
+
+        const itemQuantity = document.createElement('td');
+        itemQuantity.textContent = item.quantities;
+        row.appendChild(itemQuantity);
+
+        const itemPrice = document.createElement('td');
+        itemPrice.textContent = item.prices;
+        row.appendChild(itemPrice);
+
+        tbody.appendChild(row);
+
+        // Calculate and accumulate the total amount
+        totalAmount += item.quantities * item.prices;
+    }
+    table.appendChild(tbody);
+
+    // Append the table to the order-summary-content div
+    orderSummaryContentDiv.appendChild(table);
+
+  // Create a paragraph element for the total amount
+  const totalAmountElement = document.createElement('p');
+  totalAmountElement.textContent = `Total Amount: Rs. ${totalAmount}`;
+
+  orderSummaryContentDiv.appendChild(totalAmountElement);
+
+  // Show the "Make Payment" button
+  const makePaymentButton = document.getElementById('makePaymentButton');
+  makePaymentButton.style.display = 'block';
+
+  const placeAnotherOrderButton = document.getElementById('placeAnotherOrderButton');
+  placeAnotherOrderButton.style.display = 'block';
+
+  // Trigger a click event on the "Order" tab to switch to it
+  const orderTab = document.getElementById('order-tab');
+  orderTab.click();
+}
+
+function getCookieValue(cookieName) {
+    const name = cookieName + "=";
+    const decodedCookie = decodeURIComponent(document.cookie);
+    const ca = decodedCookie.split(';');
+    for(let i = 0; i <ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) === ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) === 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return ""; // Return empty string if the cookie doesn't exist
+}
+
+function fetchOrderSummaryAndDisplay() {
+  const sessionId = getCookieValue('sessionId');
+  const tableNumber = getCookieValue('tableNumber');
+    axios.get('/get_order_summary', {
+        params: {
+            session_id: sessionId, table_number: tableNumber
+        }
+    })
+    .then(response => {
+        displayOrderSummary(response.data);
+    })
+    .catch(error => {
+        console.error('Error loading order summary:', error);
+    });
+
+    // const sessionId = document.cookie
+  //       .split('; ')
+  //       .find(row => row.startsWith('sessionId='))
+  //       .split('=')[1];
+  // const tableNumber = document.cookie
+  //       .split('; ')
+  //       .find(row => row.startsWith('table='))
+  //       .split('=')[1];
+
+}
+
+
+window.addEventListener('beforeunload', function (e) {
+    navigator.sendBeacon('/logout', 'session_id=sessionId', 'table_number = tableNumber');
+})
+
+
+
+function makePayment() {
+  // Replace this with your payment handling logic
+  const session_id = document.cookie
+      .split('; ')
+      .find(row => row.startsWith('sessionId='))
+      .split('=')[1];
+  
+  // Get the payment image element
+  const paymentImage = document.getElementById('qrCodeImage');
+
+  // Set the QR code image source URL using a template literal
+  paymentImage.src = `/static/upi_qr_code_${session_id}.png`; // Use backticks
+
+  // Display the payment image
+  const paymentImageDiv = document.getElementById('payment-image');
+  paymentImageDiv.style.display = 'block';
+  var tableNumber = getCookie('tableNumber');
+  window.location.href = `payment.html?table_number=${tableNumber}`;
+}
+
+
+
+// Attach an event listener to the "Place Order" button
+const viewOrderButton = document.getElementById('viewOrder');
+
+viewOrderButton.addEventListener('click', fetchOrderSummaryAndDisplay);
+
+// Attach an event listener to the "Make Payment" button
+const makePaymentButton = document.getElementById('makePaymentButton');
+makePaymentButton.addEventListener('click', makePayment);
+
+document.addEventListener("DOMContentLoaded", function() {
+      // Get the "Place Another Order" button element
+      const placeAnotherOrderButton = document.getElementById("placeAnotherOrderButton");
+
+      // Add click event listener to the button
+      placeAnotherOrderButton.addEventListener("click", function() {
+          // Redirect the user to index1.html
+          window.location.href = "index1.html";
+      });
+  });
+
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.3/axios.min.js"></script>
+<script src="/static/JS/app1.js"></script>
+</body>
+</html>
