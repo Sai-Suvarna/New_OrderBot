@@ -21,13 +21,17 @@ from fastapi import (
     Cookie,
 )
 
+load_dotenv()
 
-project_id = 'ck-eams'
+# key_path = "ck-eams-9260619158c0.json"
+# bigquery_client = bigquery.Client.from_service_account_json(key_path)
+
+project_id = "ck-eams"
 
 # Initialize a BigQuery client
 client = bigquery.Client(project=project_id)
-load_dotenv()
 
+# API key connection 
 api_key = os.getenv("API_KEY")
 openai.api_key = api_key
 

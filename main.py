@@ -22,15 +22,24 @@ import random
 import os,uuid
 import json
 import logging
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = os.getenv("GOOGLE_APPLICATION_CREDENTIALS")
+# from google.oauth2 import service_account
 from google.cloud import bigquery
+
 from fastapi.responses import HTMLResponse
 from fastapi import Request
+
+key_path = "ck-eams-9260619158c0.json"
+# export GOOGLE_APPLICATION_CREDENTIALS= key_path
+
+# bigquery_client = bigquery.Client.from_service_account_json(key_path)
 
 # Set your Google Cloud project ID
 project_id = 'ck-eams'
 
 # Initialize a BigQuery client
 client = bigquery.Client(project=project_id)
+
 
 # Configure logging
 logging.basicConfig(
